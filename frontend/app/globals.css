@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0b0e;
+  --foreground: #f4f4f6;
+  --spotify-green: #1db954;
+  --card-bg: #121216;
+  --border-color: #232329;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
