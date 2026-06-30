@@ -69,4 +69,7 @@ async def generate_flow(payload: GenerateFlowRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    # Use PORT env variable if defined (for production deployment like Render/Railway)
+    port = int(os.getenv("PORT", 8000))
+    # Bind to 0.0.0.0 to receive external connections in cloud platforms
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
