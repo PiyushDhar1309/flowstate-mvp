@@ -83,8 +83,35 @@ OLLAMA_MODEL=llama3.2:latest
 
 ---
 
-## Deployment (Vercel)
+## Deployment
 
-The Next.js frontend is configured to use environment variables for api resolution:
-- Set `NEXT_PUBLIC_API_URL` on Vercel to point to your hosted backend (e.g., hosted on Render or Railway).
+### 1. Backend Deployment (Render / Railway)
+
+You can deploy the FastAPI backend easily on **Render** or **Railway**.
+
+#### Option A: Render (using Blueprint)
+1. Commit and push all changes (including `render.yaml` and `backend/Dockerfile`) to your GitHub repository.
+2. Log in to [Render](https://render.com/).
+3. Click **New +** and select **Blueprint**.
+4. Connect your GitHub repository. Render will automatically detect the `render.yaml` and configure the service.
+5. Provide the required environment variables:
+   - `SPOTIFY_CLIENT_ID`
+   - `SPOTIFY_CLIENT_SECRET`
+   - `OLLAMA_BASE_URL` (optional: URL to a remote Ollama instance, e.g. on RunPod, or leave blank to fall back to built-in music flow descriptions)
+   - `OLLAMA_API_KEY` (optional)
+6. Click **Apply** to deploy.
+
+#### Option B: Railway (using Dockerfile)
+1. Log in to [Railway](https://railway.app/).
+2. Create a **New Project** and select **Deploy from GitHub repo**.
+3. Choose your repository.
+4. Railway will automatically detect `backend/Dockerfile` and deploy it.
+   - *Note:* If you deploy the entire repo, set the **Root Directory** of the Railway service settings to `backend`.
+5. Add the required environment variables in the **Variables** tab of your service.
+
+### 2. Frontend Deployment (Vercel)
+
+The Next.js frontend is configured to use environment variables for API resolution:
+- Set `NEXT_PUBLIC_API_URL` on Vercel to point to your hosted backend (e.g., `https://flowstate-backend.onrender.com`).
 - If left unset, it will default to querying the local server running on `http://127.0.0.1:8000` on the client side.
+
